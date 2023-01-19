@@ -1,5 +1,6 @@
 ## VPN Bypass | Local Domain Based Routing
-VPN Bypass can bypass local VPN, by routing specific domains to the local gateway, like it would usually work when VPN is not active.
+VPN Bypass can bypass local VPN, by routing specific domains to the local gateway, 
+like it would usually work when VPN is not active.
 
 ![Example UI](example_ui.jpg)
 
