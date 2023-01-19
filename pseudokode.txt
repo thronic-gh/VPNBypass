@@ -1,0 +1,28 @@
+ONTIMER (10 SEKUNDER GJENTAGELSE)
+	> Registrer hvert konfigurerte domene-IP i global resolved_ips 
+	> Kjør UpdateHostsRoutes(false).
+	
+UPDATEHOSTROUTES (BOOL JUSTCLEANIT)
+	> Returner hvis resolved_ips er tom og JustCleanIt er falsk.
+	> Legg til eksisterende registreringer i hosts i lokal AddedHosts(IP,domene).
+
+	> Løp gjennom resolved_ips
+		> Forbered registrering i hosts.
+		> Registrer i rutetabell.
+			> Registrer i allroutes hvis den ikke finnes fra før 
+			(for opprydding ved avslutning).
+
+			NOTAT: Tanken her er at eksisterende og "utdaterte" IP adresser 
+			fremdeles fint kan ligge i rutetabellen. Og hvis samme IP adresse 
+			allerede ligger der, vil Windows avvise dobbel registrering for oss.
+			
+	> Løp gjennom lokal AddedHosts
+		> Forbered registrering i hosts hvis den ikke fantes i resolved_ips.
+
+			NOTAT: Tanken her er at noen domener kan feile på IP løsning, og 
+			dermed falle utenom resolved_ips runden i ONTIMER. Det betyr at 
+			forrige IP fortsatt ligger i rutetabell, og at vi bare trenger å få 
+			den med på nytt i hosts slik at den ikke forsvinner. Ingen oppdatering 
+			utført på IP, og dermed ingen endring gjort fra forrige runde.
+		
+	> Skriv/oppdater hosts.
