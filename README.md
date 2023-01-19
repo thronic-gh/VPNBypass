@@ -11,6 +11,8 @@ This software installs/removes an added service via the user interface that keep
 
 If your VPN metric is lower than default Bypass routes, just turn off automatic metric in your NIC and set it to 1. This is a setting available in ncpa.cpl > NIC Properties > TCP/IPv4 properties > Advanced.
 
+TIP: You do not need to have client program open (some users seem to think so), it's just for viewing log and stop/starting the service. 
+
 ## Changelog
 **2019.05.02: Updated Windows & GNU/Linux Release 1.2.0** 
 [+] Upgraded DNS handling with support for round-robin A records. 
